@@ -1,0 +1,138 @@
+﻿<Window x:Class="K_project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:K_project"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModel="clr-namespace:K_project.MVVM.ViewModel"
+        mc:Ignorable="d"
+                Title="Window1" Height="600" Width="920"
+        WindowStyle = "None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+    
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+
+    </Window.DataContext>
+    <Border Background="#272527"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="304*"/>
+                <RowDefinition Height="221*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Kuehne+Nagel"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Foreground="white"
+                   FontSize="22"
+                       Margin="25,0,0,0"/>
+            <StackPanel Grid.Row="1" Grid.RowSpan="2">
+                <RadioButton 
+                    
+
+                    Content="Route Finder"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                            Command="{Binding HomeViewCommand}" 
+                             />
+                <RadioButton Content="Add Pricing"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DiscoveryViewCommand}" Checked="RadioButton_Checked_1"
+                             />
+                <RadioButton Content="Database"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DatabaseViewCommand}"
+                             />
+
+
+
+            </StackPanel>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10" 
+                            Grid.RowSpan="2"
+                            Content="{Binding CurrentView}"
+                            >
+                <ContentControl.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                       RadiusY="10"
+                                       Rect="0,0,688,500"
+                                       />
+                </ContentControl.Clip>
+            </ContentControl>
+            <Grid
+                
+                Background="Transparent" 
+                     
+                     Grid.ColumnSpan="2" 
+                     HorizontalAlignment="Left" 
+                     Height="75" 
+                     VerticalAlignment="Center" Width="920"
+                MouseDown="Window_MouseDown"
+                    >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="131*"/>
+                    <ColumnDefinition Width="789*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+
+            <Button
+                
+               
+                Content="X" Grid.Column="1" Margin="649,23,25,20" Click="Button_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="White"/>
+                        <Setter Property="BorderThickness" Value="3"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontStyle" Value="Normal"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="White">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF67B3E4"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="3"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                
+            </Button>
+
+        </Grid>
+
+
+
+    </Border>
+</Window>
